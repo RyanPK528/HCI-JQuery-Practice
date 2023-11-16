@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>HCI Jquery Practice Assignment</title>
+<style>
+* {
+    box-sizing: border-box;
+}
+  
+body {
+    font-family: Arial;
+    padding: 10px;
+    background-image: url('https://i.pinimg.com/originals/19/6a/d9/196ad9d3122098b297d7b99ce9ff209f.gif'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+  
+.header {
+    padding: 30px;
+    text-align: center;
+    background: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    margin-top: 10%;
+}
+  
+.header h1 {
+    font-size: clamp(42px, 5vw, 50px);
+}
+
+.header h3 {
+    font-size: clamp(16px, 2vw, 22px);
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #000000;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+  
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 25px;
+    text-decoration: none;
+}
+  
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+  
+.topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+  
+.topnav .icon {
+    display: none;
+}
+
+  
+
+@media screen and (max-width: 707px) {
+    .topnav a:not(:first-child) {display: none;}
+    .topnav a.icon {
+      float: right;
+      display: block;
+    }
+}
+  
+@media screen and (max-width: 600px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive a.icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+}        
+</style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Toggle the visibility of the answer when clicking on the question
+            $('.faq-question').click(function() {
+                $(this).next('.faq-answer').slideToggle();
+                $('.faq-answer').not($(this).next('.faq-answer')).slideUp();
+            });
+        });
+
+        function myFunction() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="header">
+      <h1>HCI Jquery Assignment</h1>
+      <h3>Name: Ryan Patrick Komala | Class: L1AC | Student ID: 2702334853</h3>
+    </div>
+    
+    <div class="topnav" id="myTopnav">
+      <a href="index.html">Home</a>
+      <a href="contact-form.html">Contact Form</a>
+      <a href="accordian-FAQ.html">Accordion FAQ</a>
+      <a href="image-gallery.html">Image Gallery</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url("https://i.pinimg.com/originals/19/6a/d9/196ad9d3122098b297d7b99ce9ff209f.gif");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .container-1 {
+            max-width: 800px;
+            margin: auto;
+            border-radius: 8px;
+            background-color: #323232;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            color: #555;
+            font-weight: bold;
+        }
+
+        .error {
+            border-color: red;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .layer {
+                width: 80%;
+            }
+
+            .container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-black" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact Form</a>
+      <a href="accordian-FAQ.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Accordion FAQ</a>
+      <a href="image-gallery.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Image Gallery</a>
+    </div>
+  
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+      <a href="#" class="w3-bar-item w3-button w3-padding-large">Contact Form</a>
+      <a href="accordian-FAQ.html" class="w3-bar-item w3-button w3-padding-large">Accordion FAQ</a>
+      <a href="image-gallery.html" class="w3-bar-item w3-button w3-padding-large">Image Gallery</a>
+    </div>
+</div>    
+
+<div class="container-1">
+    <h1>Interactive Contact Form</h1>
+
+    <div class="container">
+        <form id="contactForm" action="/action_page.php">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your first name">
+
+            <label for="lname">Last Name</label>    
+            <input type="text" id="lname" name="lastname" placeholder="Your last name">
+
+            <label for="email">E-mail</label>
+            <input type="text" id="email" name="email" placeholder="Your email address">
+
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" placeholder="Your phone number">
+
+            <label for="extras">Extras</label>
+            <textarea type="text" id="extras" name="extras"></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#contactForm").submit(function (event) {
+            event.preventDefault();
+            validateForm();
+        });
+
+        function showError(element, message) {
+            element.addClass("error").after($("<p class='error-message'>" + message + "</p>"));
+        }
+
+        function hideError(element) {
+            element.removeClass("error").next(".error-message").remove();
+        }
+
+        function validateForm() {
+            $(".error-message").remove();
+            $("input, select, textarea").removeClass("error");
+
+            var isValid = true;
+
+            function validateField(field, validationFn, errorMessage) {
+                if (!validationFn(field.val())) {
+                    showError(field, errorMessage);
+                    isValid = false;
+                } else {
+                    hideError(field);
+                }
+            }
+
+            validateField($("#fname"), val => /^[A-Za-z]+$/.test(val),
+                "Please enter a valid first name (alphabets only)");
+
+            validateField($("#lname"), val => /^[A-Za-z]+$/.test(val),
+                "Please enter a valid last name (alphabets only)");
+
+            validateField($("#email"), val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+                "Please enter a valid email address");
+
+            validateField($("#phone"), val => /^\d{10,12}$/.test(val),
+                "Please enter a valid phone number (10-12 digits)");
+
+            if (isValid) {
+                alert("Form submitted successfully!");
+            }
+        }
+    });
+
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else { 
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+
+</body>
+</html>
