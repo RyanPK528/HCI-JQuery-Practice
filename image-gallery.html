@@ -41,36 +41,60 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .faq-container {
-            max-width: 600px;
-            margin: 50px auto;
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
         }
 
-        .faq-item {
-            border-bottom: 1px solid #ccc;
+        .gallery-item {
+            width: 30%;
+            margin: 10px;
         }
 
-        .faq-question {
-            background-color: #323232;
-            padding: 10px;
+        .gallery-item img {
+            width: 100%;
+            border-radius: 8px;
             cursor: pointer;
-            color: white;
+            transition: transform 0.3s;
         }
 
-        .faq-answer {
-            background-color: rgb(163, 163, 163);
-            display: none;
-            padding: 10px;
+        .gallery-item img:hover {
+            transform: scale(1.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .filter-button {
+            margin: 0 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Toggle the visibility of the answer when clicking on the question
-            $('.faq-question').click(function() {
-                $(this).next('.faq-answer').slideToggle();
-                $('.faq-answer').not($(this).next('.faq-answer')).slideUp();
+            // Your existing FAQ toggle code remains unchanged
+
+            // Image gallery filtering
+            $('.filter-button').click(function() {
+                var category = $(this).data('category');
+                if (category === 'all') {
+                    $('.gallery-item').show();
+                } else {
+                    $('.gallery-item').hide();
+                    $('.' + category).show();
+                }
             });
         });
 
@@ -83,53 +107,70 @@
             }
         }
     </script>
-
 </head>
 <body>
-    
+
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card w3-left-align w3-large">
       <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-black" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
       <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
       <a href="contact-form.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact Form</a>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Accordion FAQ</a>
-      <a href="image-gallery.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Image Gallery</a>
+      <a href="accordian-FAQ.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Accordion FAQ</a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Image Gallery</a>
     </div>
   
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
       <a href="contact-form.html" class="w3-bar-item w3-button w3-padding-large">Contact Form</a>
-      <a href="#" class="w3-bar-item w3-button w3-padding-large">Accordion FAQ</a>
-      <a href="image-gallery.html" class="w3-bar-item w3-button w3-padding-large">Image Gallery</a>
+      <a href="accordian-FAQ.html" class="w3-bar-item w3-button w3-padding-large">Accordion FAQ</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-large">Image Gallery</a>
     </div>
 </div>
 
 <div class="container-1">
     <h1>Frequently Asked Questions about HTML</h1>
 
-<div class="container">
-    <div class="faq-container">
-        <div class="faq-item">
-            <div class="faq-question">What is HTML?</div>
-            <div class="faq-answer">
-                <p>HTML, or HyperText Markup Language, is a standard markup language used to create the structure and content of web pages. It consists of a set of elements or tags that define the different parts of a document, such as headings, paragraphs, links, images, and more.</p>
-            </div>
+    <div class="container">
+        <div class="filter-buttons">
+            <button class="filter-button" data-category="all">All</button>
+            <button class="filter-button" data-category="nature">Nature</button>
+            <button class="filter-button" data-category="travel">Travel</button>
+            <button class="filter-button" data-category="animals">Animals</button>
         </div>
-        <div class="faq-item">
-            <div class="faq-question">What is the basic structure of an HTML document?</div>
-            <div class="faq-answer">
-                <p>The basic structure of an HTML document includes a DOCTYPE declaration "!DOCTYPE html", an opening and closing "html"" tag, a head section "head"" containing metadata like the title and character set, and a body section "body" containing the actual content of the webpage.</p>
+
+        <div class="image-gallery">
+            <div class="gallery-item nature">
+                <img src="https://c4.wallpaperflare.com/wallpaper/438/370/332/beautiful-pictures-of-nature-hd-1920x1080-wallpaper-preview.jpg" alt="Nature 1">
             </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">What is the role of the HTML "meta" tag?</div>
-            <div class="faq-answer">
-                <p>The <meta> tag is used to provide metadata about the HTML document. Commonly used attributes include charset to specify the character set, viewport settings for responsive design, and name/content pairs for information like keywords and descriptions.</p>
+            <div class="gallery-item travel">
+                <img src="https://images.unsplash.com/photo-1486299267070-83823f5448dd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGFuZG1hcmt8ZW58MHx8MHx8fDA%3D" alt="Travel 1">
             </div>
+            <div class="gallery-item animals">
+                <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YW5pbWFsfGVufDB8fDB8fHww" alt="Animals 1">
+            </div>
+            <div class="gallery-item nature">
+                <img src="https://wallpapers.com/images/featured/hd-nature-pictures-ngdfb9h966h4z3le.jpg" alt="Nature 2">
+            </div>
+            <div class="gallery-item travel">
+                <img src="https://images.unsplash.com/photo-1500153556700-4c8db53996c3?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFtb3VzJTIwbGFuZG1hcmtzfGVufDB8fDB8fHww" alt="Travel 2">
+            </div>
+            <div class="gallery-item animals">
+                <img src="https://c4.wallpaperflare.com/wallpaper/551/638/359/animal-images-baby-animals-cool-pictures-cute-animals-wallpaper-preview.jpg" alt="Animals 2">
+            </div>
+            <div class="gallery-item nature">
+                <img src="https://www.wallpapers13.com/wp-content/uploads/2019/04/Thailand-Waterfalls-The-Beauty-Of-Nature-Landscape-HD-Wallpapers-Tablets-And-Mobile-Phones-Free-Download-For-Desktop-1366x768.jpg" alt="Nature 3">
+            </div>
+            <div class="gallery-item travel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Statue_of_Liberty%2C_NY.jpg/1280px-Statue_of_Liberty%2C_NY.jpg" alt="Travel 3">
+            </div>
+            <div class="gallery-item animals">
+                <img src="https://c4.wallpaperflare.com/wallpaper/678/900/901/animal-images-baby-animals-cool-pictures-cute-animals-wallpaper-preview.jpg" alt="Animals 3">
+            </div>
+
         </div>
     </div>
-</div>
+
 </div>
 
 </body>
